@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>She Ha Long — Feedback</title>
+  <meta name="description" content="Trang góp ý khách hàng cho She Ha Long." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#feedback" aria-label="She Ha Long">
+        <div class="brand-mark-wrap"><img src="./assets/she-hua-long-logo.png" data-she-logo class="brand-mark" alt="She Ha Long logo" /></div>
+        <div class="brand-copy">
+          <strong>SHE HUA LONG</strong>
+          <span>Snake-inspired hotpot • Hạ Long</span>
+        </div>
+      </a>
+      <nav class="topnav" aria-label="Điều hướng">
+        <a href="#feedback">Góp ý</a>
+        <a href="#order">Thông tin đơn hàng</a>
+        <a href="#map-panel">Google Maps</a>
+        <button class="admin-toggle" id="adminToggle">Chủ quán</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-orb orb-1"></div><div class="hero-orb orb-2"></div>
+        <div class="hero-content">
+          <span class="eyebrow">SHE HUA LONG • CUSTOMER EXPERIENCE</span>
+          <h1>Mong nhận được góp ý của quý khách để <em>She Ha Long</em> phục vụ tốt hơn</h1>
+          <p>Mất khoảng 2–3 phút. Mỗi lựa chọn của bạn giúp đội ngũ biết điều gì đang tốt và điều gì cần cải thiện.</p>
+          <div class="hero-meta">
+            <span class="meta-pill">01 • Món ăn</span><span class="meta-pill">02 • Nhân viên</span>
+            <span class="meta-pill">03 • Không gian</span><span class="meta-pill">04 • Phục vụ</span>
+          </div>
+        </div>
+        <div class="hero-logo-card">
+          <img src="./assets/she-hua-long-logo.png" data-she-logo alt="She Ha Long logo" />
+          <div class="seal"><span>FEEDBACK</span><strong>01—05</strong></div>
+        </div>
+      </section>
+
+      <section class="progress-wrap" aria-label="Tiến độ biểu mẫu">
+        <div class="progress-top"><span id="progressLabel">Bắt đầu feedback</span><span id="progressPct">0%</span></div>
+        <div class="progress-bar"><span id="progressBar"></span></div>
+      </section>
+
+      <form id="feedbackForm" novalidate>
+        <section class="feedback-section" id="feedback">
+          <div class="section-heading"><div class="section-number">01</div><div>
+            <span class="section-kicker">FOOD QUALITY</span><h2>Chất lượng món ăn</h2><p>Tick các mục bạn muốn đánh giá.</p>
+          </div></div>
+          <div class="criteria-grid">
+            <label class="check-card"><input type="checkbox" name="food_serve_time"><span>Thời gian món ăn được mang ra</span></label>
+            <label class="check-card"><input type="checkbox" name="food_spicy"><span>Độ cay / mặn của món ăn</span></label>
+            <label class="check-card"><input type="checkbox" name="food_dry"><span>Độ khô của món ăn</span></label>
+            <label class="check-card"><input type="checkbox" name="food_fresh"><span>Độ tươi của nguyên liệu</span></label>
+            <label class="check-card"><input type="checkbox" name="food_taste"><span>Hương vị món ăn</span></label>
+            <label class="check-card"><input type="checkbox" name="food_presentation"><span>Cách trình bày món ăn</span></label>
+          </div>
+          <div class="rating-row"><div><h3>Đánh giá tổng quan món ăn</h3><p class="muted">1 = Chưa hài lòng • 5 = Rất hài lòng</p></div><div class="star-rating" data-rating="food_rating"></div></div>
+        </section>
+
+        <section class="feedback-section">
+          <div class="section-heading"><div class="section-number">02</div><div>
+            <span class="section-kicker">SERVICE TEAM</span><h2>Nhân viên</h2><p>Đánh giá cách đội ngũ phục vụ và hỗ trợ bạn.</p>
+          </div></div>
+          <div class="criteria-grid">
+            <label class="check-card"><input type="checkbox" name="staff_attitude"><span>Thái độ phục vụ</span></label>
+            <label class="check-card"><input type="checkbox" name="staff_communication"><span>Giao tiếp với khách</span></label>
+            <label class="check-card"><input type="checkbox" name="staff_style"><span>Tác phong</span></label>
+            <label class="check-card"><input type="checkbox" name="staff_knowledge"><span>Kiến thức về món ăn</span></label>
+            <label class="check-card"><input type="checkbox" name="staff_skill"><span>Kỹ năng phục vụ</span></label>
+            <label class="check-card"><input type="checkbox" name="staff_proactive"><span>Sự chủ động hỗ trợ khách</span></label>
+          </div>
+          <div class="rating-row"><div><h3>Đánh giá nhân viên</h3><p class="muted">Chạm vào số sao để chọn.</p></div><div class="star-rating" data-rating="staff_rating"></div></div>
+        </section>
+
+        <section class="feedback-section">
+          <div class="section-heading"><div class="section-number">03</div><div>
+            <span class="section-kicker">DINING SPACE</span><h2>Không gian</h2><p>Đánh giá cảm giác sạch sẽ, thoải mái và môi trường ăn uống.</p>
+          </div></div>
+          <div class="criteria-grid">
+            <label class="check-card"><input type="checkbox" name="space_hygiene"><span>Vệ sinh</span></label>
+            <label class="check-card"><input type="checkbox" name="space_comfort"><span>Sự thoải mái</span></label>
+            <label class="check-card"><input type="checkbox" name="space_decor"><span>Trang trí</span></label>
+            <label class="check-card"><input type="checkbox" name="space_table"><span>Độ sạch sẽ của bàn ghế</span></label>
+            <label class="check-card"><input type="checkbox" name="space_smoke"><span>Mùi / khói trong khu vực ăn</span></label>
+            <label class="check-card"><input type="checkbox" name="space_ac"><span>Nhiệt độ / điều hòa</span></label>
+          </div>
+          <div class="rating-row"><div><h3>Đánh giá không gian</h3><p class="muted">Chúng tôi muốn nơi ăn uống luôn dễ chịu.</p></div><div class="star-rating" data-rating="space_rating"></div></div>
+        </section>
+
+        <section class="feedback-section">
+          <div class="section-heading"><div class="section-number">04</div><div>
+            <span class="section-kicker">SPEED & ACCURACY</span><h2>Tốc độ & độ chính xác phục vụ</h2><p>Đánh giá trải nghiệm từ lúc order đến khi hoàn tất yêu cầu.</p>
+          </div></div>
+          <div class="criteria-grid">
+            <label class="check-card"><input type="checkbox" name="service_order_time"><span>Thời gian nhận order</span></label>
+            <label class="check-card"><input type="checkbox" name="service_food_time"><span>Thời gian ra món</span></label>
+            <label class="check-card"><input type="checkbox" name="service_wait"><span>Thời gian chờ</span></label>
+            <label class="check-card"><input type="checkbox" name="service_missing"><span>Món bị thiếu</span></label>
+            <label class="check-card"><input type="checkbox" name="service_wrong"><span>Món bị nhầm</span></label>
+            <label class="check-card"><input type="checkbox" name="service_extra_request"><span>Thời gian xử lý khi khách yêu cầu thêm món / dịch vụ</span></label>
+          </div>
+          <div class="rating-row"><div><h3>Đánh giá tốc độ phục vụ</h3><p class="muted">Điểm thấp sẽ được ưu tiên xử lý.</p></div><div class="star-rating" data-rating="service_rating"></div></div>
+        </section>
+
+        <section class="feedback-section highlight-section">
+          <div class="section-heading"><div class="section-number dark">05</div><div>
+            <span class="section-kicker">TOTAL EXPERIENCE</span><h2>Trải nghiệm tổng thể</h2><p>Điểm chung giúp She Ha Long biết khả năng khách quay lại.</p>
+          </div></div>
+          <div class="overall-card">
+            <div class="overall-score"><span>Mức độ hài lòng chung</span><strong id="overallScore">0.0</strong><small>/ 5</small></div>
+            <div class="star-rating star-rating-lg" data-rating="overall_rating"></div>
+          </div>
+          <div class="question-grid">
+            <div class="question-card"><h3>Bạn có quay lại She Ha Long không?</h3><div class="segmented">
+              <label><input type="radio" name="return_plan" value="Chắc chắn có"><span>Chắc chắn có</span></label>
+              <label><input type="radio" name="return_plan" value="Có thể"><span>Có thể</span></label>
+              <label><input type="radio" name="return_plan" value="Chưa chắc"><span>Chưa chắc</span></label>
+              <label><input type="radio" name="return_plan" value="Không"><span>Không</span></label>
+            </div></div>
+            <div class="question-card"><h3>Bạn có giới thiệu She Ha Long cho bạn bè không?</h3><div class="segmented two">
+              <label><input type="radio" name="recommend" value="Có"><span>Có</span></label>
+              <label><input type="radio" name="recommend" value="Không"><span>Không</span></label>
+            </div></div>
+          </div>
+        </section>
+
+        <section class="feedback-section note-section">
+          <div class="section-heading"><div class="section-number">06</div><div>
+            <span class="section-kicker">OPEN FEEDBACK</span><h2>Bạn muốn phản hồi điều gì khác?</h2><p>Chia sẻ điều bạn thích hoặc điều bạn muốn She Ha Long cải thiện.</p>
+          </div></div>
+          <textarea id="feedbackNote" name="feedback_note" rows="6" placeholder="Hãy chia sẻ điều bạn thích hoặc điều bạn muốn She Ha Long cải thiện."></textarea>
+        </section>
+
+        <section class="feedback-section" id="order">
+          <div class="section-heading"><div class="section-number">07</div><div>
+            <span class="section-kicker">ORDER CONTEXT</span><h2>Thông tin đơn hàng</h2><p>Giúp chủ quán biết feedback xảy ra ở bàn nào và thời điểm nào.</p>
+          </div></div>
+          <div class="form-grid">
+            <label><span>Ngày đến quán</span><input type="date" name="visit_date" id="visitDate"/></label>
+            <label><span>Mã bàn / số bàn</span><input type="text" name="table_number" placeholder="Ví dụ: Bàn 12"/></label>
+            <label><span>Ca phục vụ</span><input type="time" name="service_time"/></label>
+            <label><span>Số người</span><input type="number" name="guest_count" min="1" max="50" placeholder="4"/></label>
+            <label class="full"><span>Hình thức</span><div class="segmented order-type">
+              <label><input type="radio" name="order_type" value="Ăn tại quán"><span>Ăn tại quán</span></label>
+              <label><input type="radio" name="order_type" value="Đặt mang về"><span>Đặt mang về</span></label>
+            </div></label>
+          </div>
+        </section>
+
+        <section class="submit-section">
+          <div class="submit-copy"><span class="section-kicker">READY TO SEND?</span><h2>Cảm ơn bạn đã dành thời gian.</h2><p>Feedback sẽ được lưu để chủ quán theo dõi.</p></div>
+          <button type="submit" class="primary-btn"><span>Gửi Feedback</span><span class="arrow">→</span></button>
+        </section>
+      </form>
+
+      <section class="success-panel hidden" id="successPanel">
+        <div class="success-icon">✓</div><span class="section-kicker">THANK YOU</span><h2>Cảm ơn quý khách!</h2>
+        <p id="successMessage"></p>
+        <div class="review-card hidden" id="reviewCard">
+          <div><strong>Nếu hài lòng, hãy dành 1 phút đánh giá She Ha Long 5 sao nhé ❤️</strong><p>Đánh giá của bạn giúp nhà hàng tiếp tục cải thiện trải nghiệm.</p></div>
+          <a id="mapsButton" class="maps-btn" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/YtP8Dwm1LrDLKzMe7?g_st=ic">Đánh giá trên Google Maps ↗</a>
+        </div>
+        <button class="secondary-btn" id="newFeedback">Gửi feedback mới</button>
+      </section>
+    </main>
+
+    <!-- V1-style owner panel, backed by V2 Supabase functionality -->
+    <aside class="admin-panel" id="adminPanel" aria-hidden="true">
+      <div class="admin-head">
+        <div><span class="section-kicker">OWNER PORTAL</span><h2 id="adminTitle">Chủ cửa hàng</h2></div>
+        <button id="closeAdmin" class="icon-btn" aria-label="Đóng">×</button>
+      </div>
+
+      <div id="loginView">
+        <div class="admin-auth">
+          <div class="fake-auth"><div class="avatar">SH</div><div><strong>Đăng nhập chủ quán</strong><span>Supabase Auth</span></div></div>
+        </div>
+        <form id="loginForm" class="login-form">
+          <label><span>Email</span><input id="ownerEmail" type="email" required placeholder="Email chủ cửa hàng"/></label>
+          <label><span>Mật khẩu</span><input id="ownerPassword" type="password" required placeholder="Mật khẩu"/></label>
+          <button class="primary-btn full" type="submit" id="loginButton">Đăng nhập Dashboard</button>
+          <div class="login-error" id="loginError"></div>
+        </form>
+      </div>
+
+      <div id="dashboardView" class="hidden">
+        <div class="admin-session">
+          <div><strong id="ownerName">Chủ She Ha Long</strong><span id="ownerEmailText"></span></div>
+          <button id="logoutButton" class="text-btn">Đăng xuất</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><span>Tổng feedback</span><strong id="statTotal">0</strong></div>
+          <div class="stat-card"><span>Điểm trung bình</span><strong id="statAvg">0.0</strong></div>
+          <div class="stat-card"><span>Khách hài lòng</span><strong id="statHappy">0%</strong></div>
+          <div class="stat-card"><span>Chưa xử lý</span><strong id="statOpen">0</strong></div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-title"><div><span class="section-kicker">QUALITY SNAPSHOT</span><h3>Điểm theo nhóm</h3></div><button id="refreshDashboard" class="text-btn">Làm mới</button></div>
+          <div class="metric-list">
+            <div class="metric"><span>Chất lượng món</span><strong id="metricFood">0.0 ⭐</strong></div>
+            <div class="metric"><span>Nhân viên</span><strong id="metricStaff">0.0 ⭐</strong></div>
+            <div class="metric"><span>Không gian</span><strong id="metricSpace">0.0 ⭐</strong></div>
+            <div class="metric"><span>Tốc độ phục vụ</span><strong id="metricService">0.0 ⭐</strong></div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-title"><div><span class="section-kicker">FEEDBACK LIST</span><h3>Feedback gần đây</h3></div></div>
+          <div id="feedbackList" class="feedback-list"><div class="empty-state">Chưa có feedback.</div></div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast"></div>
+    <!-- detail modal appended inside body -->
+    <div class="modal-backdrop hidden" id="detailBackdrop">
+      <div class="detail-modal" role="dialog" aria-modal="true">
+        <button id="closeDetail" class="icon-btn">×</button>
+        <span class="section-kicker">FEEDBACK CHI TIẾT</span>
+        <h3 id="detailRating">⭐ 0/5</h3>
+        <div class="detail-meta" id="detailMeta"></div>
+        <div class="detail-body">
+          <p id="detailComment"></p>
+          <label><span>Ghi chú chủ quán</span><textarea id="ownerNote" rows="4" placeholder="Nhập ghi chú xử lý..."></textarea></label>
+        </div>
+        <div class="status-row">
+          <span class="status" id="detailStatusBadge">Mới</span>
+          <select id="detailStatus" class="status-select">
+            <option value="new">Mới</option>
+            <option value="processing">Đang xử lý</option>
+            <option value="resolved">Đã xử lý</option>
+          </select>
+        </div>
+        <button id="saveDetail" class="primary-btn full">Lưu thay đổi</button>
+      </div>
+    </div>
+
+  </div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
